@@ -8,6 +8,7 @@ public class FPSInput : MonoBehaviour
     public float gravity = -9.8f;
     public float sprintSpeed = 12.0f;
     public float jumpForce = 5.0f;
+    public float pushForce = 3.0f;
 
     private CharacterController charController;
     private float verticalVelocity;
@@ -44,5 +45,15 @@ public class FPSInput : MonoBehaviour
         movement.y = verticalVelocity;
 
         charController.Move(movement * Time.deltaTime);
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        //contact = hit;
+        Rigidbody body = hit.collider.attachedRigidbody;
+        if (body != null && !body.isKinematic)
+        {
+            body.linearVelocity = hit.moveDirection * pushForce;
+        }
     }
 }
