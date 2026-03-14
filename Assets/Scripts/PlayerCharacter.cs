@@ -12,4 +12,10 @@ public class PlayerCharacter : MonoBehaviour
         health -= damage;
         Debug.Log($"Health: {health}");
     }
+
+    public void Heal(int healAmt)
+    {
+        health += healAmt;
+        Debug.Log($"Health: {health}");
+    }
 }
