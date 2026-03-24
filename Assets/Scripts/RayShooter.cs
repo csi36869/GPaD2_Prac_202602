@@ -11,9 +11,6 @@ public class RayShooter : MonoBehaviour
     void Start()
     {
         cam = GetComponent<Camera>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void OnGUI()
