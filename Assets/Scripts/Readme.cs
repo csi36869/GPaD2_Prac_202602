@@ -6,6 +6,7 @@
  * - allow player to sprint
  * 
  * 
- * 
+ * Practical 7
+ * - Spawned enemy uses new speed
  * 
  */
