@@ -10,9 +10,26 @@ public class WanderingAI : MonoBehaviour
     [SerializeField] GameObject fireballPrefab;
     private GameObject fireball;
 
+    public const float baseSpeed = 3.0f;    
+
+    void OnEnable()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+    void OnDisable()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+
     void Start()
     {
         isAlive = true;
+        OnSpeedChanged(PlayerPrefs.GetFloat("speed", 1));
+    }
+
+    private void OnSpeedChanged(float value)
+    {
+        speed = baseSpeed * value;
     }
 
     // Update is called once per frame

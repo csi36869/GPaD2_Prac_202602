@@ -13,9 +13,25 @@ public class FPSInput : MonoBehaviour
     private CharacterController charController;
     private float verticalVelocity;
 
+    public const float baseSpeed = 6.0f;
+
+    void OnEnable()
+    {
+        Messenger<float>.AddListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+    void OnDisable()
+    {
+        Messenger<float>.RemoveListener(GameEvent.SPEED_CHANGED, OnSpeedChanged);
+    }
+
     void Start()
     {
         charController = GetComponent<CharacterController>();
+    }
+
+    private void OnSpeedChanged(float value)
+    {
+        speed = baseSpeed * value;
     }
 
     // Update is called once per frame
