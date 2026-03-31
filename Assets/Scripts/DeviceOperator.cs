@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DeviceOperator : MonoBehaviour
 {
-    public float radius = 1.5f;
+    public float radius = 3f;
 
     // Update is called once per frame
     void Update()

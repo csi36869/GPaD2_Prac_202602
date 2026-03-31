@@ -17,4 +17,14 @@ public class Spin : MonoBehaviour
     {
         transform.Rotate(0,speed,0);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        PlayerCharacter player = other.GetComponent<PlayerCharacter>();
+        if (player != null)
+        {
+            player.Heal(1);
+        }
+        Destroy(this.gameObject);
+    }
 }
