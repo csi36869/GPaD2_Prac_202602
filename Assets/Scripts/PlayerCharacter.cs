@@ -1,27 +1,38 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerCharacter : MonoBehaviour
 {
     private int health;
-    private int heal;
+    [SerializeField] int maxHealth;
+
+    [SerializeField] Image healthBar;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        health = 5;   
+        health = maxHealth;   
     }
 
     public void Hurt (int damage)
     {
-        health -= damage;
-        Debug.Log($"Health: {health}");
+        if (health > 0)
+        {
+            health -= damage;
+            healthBar.transform.localScale = new Vector3(health / (float)maxHealth, 1, 1);
+            Debug.Log($"Health: {health}");
+        }
     }
 
     public void Heal (int heal)
     {
-        health += heal;
-        Debug.Log($"Health: {health}");
+        if (!(health >= maxHealth || health <= 0))
+        {
+            health += heal;
+            healthBar.transform.localScale = new Vector3(health / (float)maxHealth, 1, 1);
+            Debug.Log($"Health: {health}");
+        }
     }
 }
