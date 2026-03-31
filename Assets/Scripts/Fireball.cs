@@ -11,6 +11,7 @@ public class Fireball : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log(gameObject.name);
         PlayerCharacter player = other.GetComponent<PlayerCharacter>();
         if (player != null)
         {
