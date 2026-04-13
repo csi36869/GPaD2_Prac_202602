@@ -7,6 +7,11 @@ public class Fireball : MonoBehaviour
     public float speed = 10.0f;
     public int damage = 1;
 
+    private void Start()
+    {
+        AudioManager.instance.PlaySFX(AudioManager.instance.fire);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -21,5 +26,6 @@ public class Fireball : MonoBehaviour
             player.Hurt(damage);
         }
         Destroy(this.gameObject);
+        AudioManager.instance.StopSFX();
     }
 }

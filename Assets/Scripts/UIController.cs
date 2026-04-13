@@ -7,6 +7,7 @@ public class UIController : MonoBehaviour
 {
     [SerializeField] TMP_Text scoreLabel;
     [SerializeField] SettingsPopup settingsPopup;
+    [SerializeField] SettingsPopup AudioSetting;
 
     private int score;
 
@@ -26,6 +27,7 @@ public class UIController : MonoBehaviour
         scoreLabel.text = score.ToString();
 
         settingsPopup.Close();
+        AudioSetting.Close();
     }
 
     void Update()
@@ -35,6 +37,11 @@ public class UIController : MonoBehaviour
     public void OnOpenSettings()
     {
         settingsPopup.Open();
+    }
+
+    public void OnOpenAudioSettings()
+    {
+        AudioSetting.Open();
     }
 
     private void OnEnemyHit()

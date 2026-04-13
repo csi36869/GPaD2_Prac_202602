@@ -34,14 +34,16 @@ public class RayShooter : MonoBehaviour
             {
                 GameObject hitObject = hit.transform.gameObject;
                 ReactiveTarget target = hitObject.GetComponent<ReactiveTarget>();
-                if ( target != null)
+                if (target != null)
                 {
                     target.ReactToHit();
                     Messenger.Broadcast(GameEvent.ENEMY_HIT);
+                    AudioManager.instance.PlaySFX(AudioManager.instance.hitEnemy);
                 }
                 else
                 {
                     StartCoroutine(SphereIndicator(hit.point));
+                    AudioManager.instance.PlaySFX(AudioManager.instance.hitWall);
                 }
             }
         }

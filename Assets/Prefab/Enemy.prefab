@@ -139,5 +139,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WanderingAI
   speed: 3
-  obstacleRange: 0.5
+  obstacleRange: 1
   fireballPrefab: {fileID: 5822741071399092744, guid: fb4ca48d1c7724c43a49ad7230c6edb4, type: 3}
