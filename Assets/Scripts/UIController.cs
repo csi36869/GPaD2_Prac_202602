@@ -45,4 +45,8 @@ public class UIController : MonoBehaviour
         scoreLabel.text = score.ToString();
     }
 
+    public int GetScore()
+    {
+        return score;
+    }
 }

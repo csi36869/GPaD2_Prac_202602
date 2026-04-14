@@ -9,7 +9,7 @@ public class SceneController : MonoBehaviour
     public GameObject spawnPoint;
 
     // Update is called once per frame
-    void Update()
+    void Start()
     {
         if (enemy == null)
         {

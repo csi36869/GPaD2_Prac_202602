@@ -9,6 +9,7 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] int maxHealth;
 
     [SerializeField] Image healthBar;
+    [SerializeField] GameObject gameOverPopup;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,6 +24,14 @@ public class PlayerCharacter : MonoBehaviour
             health -= damage;
             healthBar.transform.localScale = new Vector3(health / (float)maxHealth, 1, 1);
             Debug.Log($"Health: {health}");
+            if(health == 0)
+            {
+                GameOverPopup popup = gameOverPopup.GetComponent<GameOverPopup>();
+                popup.SetTitle("Game Over");
+                popup.SetMessage("You Died!");
+                gameOverPopup.SetActive(true);
+                Time.timeScale = 0;
+            }
         }
     }
 

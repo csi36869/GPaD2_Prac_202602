@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using UnityEngine.InputSystem.XR;
 
 
 public class ReactiveTarget : MonoBehaviour
@@ -13,7 +14,7 @@ public class ReactiveTarget : MonoBehaviour
         {
             behavior.SetAlive(false);
         }
-        
+
         StartCoroutine(Die());
     }
 

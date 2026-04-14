@@ -43,7 +43,7 @@ public class RayShooter : MonoBehaviour
                 {
                     target.ReactToHit();
                     soundSource.PlayOneShot(hitEnemySound);
-                    //Messenger.Broadcast(GameEvent.ENEMY_HIT);
+                    Messenger.Broadcast(GameEvent.ENEMY_HIT);
                 }
                 else
                 {
