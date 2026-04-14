@@ -38,12 +38,13 @@ public class RayShooter : MonoBehaviour
                 {
                     target.ReactToHit();
                     Messenger.Broadcast(GameEvent.ENEMY_HIT);
-                    AudioManager.instance.PlaySFX(AudioManager.instance.hitEnemy);
+                    AudioManager.instance.PlaySFX3D(AudioManager.instance.hitEnemy, hit.point);
+                    
                 }
                 else
                 {
                     StartCoroutine(SphereIndicator(hit.point));
-                    AudioManager.instance.PlaySFX(AudioManager.instance.hitWall);
+                    AudioManager.instance.PlaySFX3D(AudioManager.instance.hitWall, hit.point);
                 }
             }
         }

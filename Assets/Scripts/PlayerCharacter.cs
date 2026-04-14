@@ -8,11 +8,17 @@ public class PlayerCharacter : MonoBehaviour
     private int health;
     public int maxHealth;
     public Image healthbar;
-   
+
+    [SerializeField] UIController UI;
 
     private void Start()
     {
         health = maxHealth;
+    }
+
+    private void Update()
+    {
+        Die();
     }
 
     public void Hurt(int damage)
@@ -31,6 +37,14 @@ public class PlayerCharacter : MonoBehaviour
         {
             health += healing;
             healthbar.transform.localScale = new Vector3(health / (float)maxHealth, 1f, 1f);
+        }
+    }
+
+    public void Die()
+    {
+        if (health == 0)
+        {
+            UI.OnOpenGameOverPopup();
         }
     }
 }

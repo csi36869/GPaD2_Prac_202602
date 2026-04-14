@@ -21,7 +21,7 @@ public class AudioManager : MonoBehaviour
         PlayMusic(bgm);
     }
 
-    private void Awake()
+    void Awake()
     {
         if (instance == null)
         {
@@ -59,5 +59,24 @@ public class AudioManager : MonoBehaviour
     public void StopMusic()
     {
         musicSource.Stop();
+    }
+
+    public void PlaySFX3D(AudioClip clip, Vector3 position)
+    {
+        if (clip == null) return;
+
+        GameObject tempGO = new GameObject("3DSound");
+        tempGO.transform.position = position;
+
+        AudioSource audioSource = tempGO.AddComponent<AudioSource>();
+
+        audioSource.clip = clip;
+        audioSource.spatialBlend = 1f;
+        audioSource.rolloffMode = AudioRolloffMode.Linear;
+        audioSource.maxDistance = 100f;
+
+        audioSource.Play();
+
+        Destroy(tempGO, clip.length);
     }
 }

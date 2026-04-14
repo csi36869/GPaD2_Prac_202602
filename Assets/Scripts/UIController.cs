@@ -8,6 +8,8 @@ public class UIController : MonoBehaviour
     [SerializeField] TMP_Text scoreLabel;
     [SerializeField] SettingsPopup settingsPopup;
     [SerializeField] SettingsPopup AudioSetting;
+    [SerializeField] SettingsPopup gameOverPopup;
+    [SerializeField] SettingsPopup victoryPopup;
 
     private int score;
 
@@ -28,12 +30,18 @@ public class UIController : MonoBehaviour
 
         settingsPopup.Close();
         AudioSetting.Close();
+        gameOverPopup.Close();
+        victoryPopup.Close();
     }
 
-    void Update()
+    private void Update()
     {
-
+        if (score == 5)
+        {
+            OnOpenVictoryPopup();
+        }
     }
+
     public void OnOpenSettings()
     {
         settingsPopup.Open();
@@ -42,6 +50,16 @@ public class UIController : MonoBehaviour
     public void OnOpenAudioSettings()
     {
         AudioSetting.Open();
+    }
+
+    public void OnOpenGameOverPopup()
+    {
+        gameOverPopup.Open();
+    }
+
+    public void OnOpenVictoryPopup()
+    {
+        victoryPopup.Open();
     }
 
     private void OnEnemyHit()

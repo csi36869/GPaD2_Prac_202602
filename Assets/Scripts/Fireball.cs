@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Fireball : MonoBehaviour
@@ -7,15 +5,24 @@ public class Fireball : MonoBehaviour
     public float speed = 10.0f;
     public int damage = 1;
 
+    private AudioSource audioSource;
+
     private void Start()
     {
-        AudioManager.instance.PlaySFX(AudioManager.instance.fire);
+        audioSource = GetComponent<AudioSource>();
+
+        if (AudioManager.instance != null)
+        {
+            audioSource.clip = AudioManager.instance.fire;
+            audioSource.loop = true;
+            audioSource.spatialBlend = 1f;
+            audioSource.Play();
+        }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, 0, speed *  Time.deltaTime);
+        transform.Translate(0, 0, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,7 +32,12 @@ public class Fireball : MonoBehaviour
         {
             player.Hurt(damage);
         }
-        Destroy(this.gameObject);
-        AudioManager.instance.StopSFX();
+
+        if (audioSource != null)
+        {
+            audioSource.Stop();
+        }
+
+        Destroy(gameObject);
     }
 }
