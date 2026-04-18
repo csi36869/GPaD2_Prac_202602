@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class DoorOpenDevice : MonoBehaviour
+public class DoorAutoOpenDevice : MonoBehaviour
 {
     [SerializeField] Vector3 dPos;
     [SerializeField] float moveTime = 1f;
@@ -18,16 +18,20 @@ public class DoorOpenDevice : MonoBehaviour
         openPos = closedPos + dPos;
     }
 
-    public void Operate()
+    public void OpenDoor()
     {
-        if (isMoving) return;
+        if (isMoving || open) return;
 
-        if (open)
-            StartCoroutine(MoveDoor(openPos, closedPos));
-        else
-            StartCoroutine(MoveDoor(closedPos, openPos));
+        StartCoroutine(MoveDoor(closedPos, openPos));
+        open = true;
+    }
 
-        open = !open;
+    public void CloseDoor()
+    {
+        if (isMoving || !open) return;
+
+        StartCoroutine(MoveDoor(openPos, closedPos));
+        open = false;
     }
 
     IEnumerator MoveDoor(Vector3 start, Vector3 end)
@@ -39,7 +43,7 @@ public class DoorOpenDevice : MonoBehaviour
         while (time < moveTime)
         {
             time += Time.deltaTime;
-            float t = time / moveTime; // 0 ? 1
+            float t = time / moveTime;
 
             transform.position = Vector3.Lerp(start, end, t);
 
@@ -47,7 +51,6 @@ public class DoorOpenDevice : MonoBehaviour
         }
 
         transform.position = end;
-
         isMoving = false;
     }
 }

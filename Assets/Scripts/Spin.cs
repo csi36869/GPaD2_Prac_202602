@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spin : MonoBehaviour
 {
-    public float speed = 3.0f;
+    public float speed = 100.0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -15,7 +15,7 @@ public class Spin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0,speed,0);
+        transform.Rotate(0f, speed * Time.deltaTime, 0f, Space.World);
     }
 
     private void OnTriggerEnter(Collider other)
